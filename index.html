@@ -108,11 +108,37 @@ let data=JSON.parse(localStorage.getItem(KEY)||'null')||[
 let logs=JSON.parse(localStorage.getItem(LOG)||'[]');
 let settings=JSON.parse(localStorage.getItem(SET)||'null')||{name:'مكتب الأستاذة هبه أبو كيله',gold:'#d6b36a',bg:'#070a0f',font:'Tahoma,Arial,sans-serif',anim:true};
 function persist(){localStorage.setItem(KEY,JSON.stringify(data));localStorage.setItem(LOG,JSON.stringify(logs))}
+async function loadClients(){
+  try{
+    const r=await fetch('/api/clients');
+    const rows=await r.json();
+
+    if(!Array.isArray(rows)) return;
+
+    data=rows.map(x=>({
+      id:String(x.id),
+      name:x.name||'',
+      cases:[{
+        no:x.case_no||'',
+        type:x.case_type||'',
+        date:x.case_date||'',
+        status:x.status||'',
+        details:x.details||''
+      }]
+    }));
+
+    persist();
+    renderDashboard();
+    renderClients();
+  }catch(err){
+    console.error('خطأ في تحميل العملاء',err);
+  }
+}
 function log(action,name){logs.unshift({time:new Date().toLocaleString('ar-EG'),action,name});logs=logs.slice(0,100);persist()}
 function toast(t){let e=document.getElementById('toast');e.textContent=t;e.classList.add('on');setTimeout(()=>e.classList.remove('on'),2200)}
 function login(){if(document.getElementById('user').value==='admin'&&document.getElementById('pass').value==='admin123'){sessionStorage.ok='1';document.getElementById('login').style.display='none';document.getElementById('app').style.display='flex';init()}else toast('بيانات الدخول غير صحيحة')}
 function logout(){sessionStorage.removeItem('ok');location.reload()}
-function init(){applySettings();renderDashboard();renderClients();renderLogs();document.getElementById('setName').value=settings.name;document.getElementById('setGold').value=settings.gold;document.getElementById('setBg').value=settings.bg;document.getElementById('setFont').value=settings.font;document.getElementById('setAnim').checked=settings.anim}
+function init(){applySettings();renderDashboard();function init(){loadClients();applySettings();renderDashboard();function init(){applySettings();renderDashboard();renderClients();renderLogs();document.getElementById('setName').value=settings.name;document.getElementById('setGold').value=settings.gold;document.getElementById('setBg').value=settings.bg;document.getElementById('setFont').value=settings.font;document.getElementById('setAnim').checked=settings.anim}
 function applySettings(){document.documentElement.style.setProperty('--gold',settings.gold);document.documentElement.style.setProperty('--gold2',settings.gold);document.documentElement.style.setProperty('--bg',settings.bg);document.body.style.fontFamily=settings.font;document.getElementById('brandName').textContent=settings.name;document.getElementById('light').style.display=settings.anim?'block':'none'}
 function showPage(id,btn){document.querySelectorAll('.page').forEach(x=>x.classList.remove('show'));document.getElementById(id).classList.add('show');document.querySelectorAll('.nav button').forEach(x=>x.classList.remove('active'));if(btn)btn.classList.add('active');let titles={dashboard:['لوحة التحكم','إدارة العملاء والقضايا بطريقة منظمة'],clients:['العملاء','ملفات العملاء والقضايا المرتبطة بهم'],search:['البحث عن عميل','ابحث بالاسم للوصول إلى الملف'],add:['إضافة عميل','إنشاء ملف عميل وقضية'],logs:['سجل العمليات','آخر العمليات المسجلة على النظام'],settings:['الإعدادات','تخصيص الهوية البصرية والنسخ الاحتياطي'],profile:['ملف العميل','بيانات العميل والقضايا الخاصة به']};document.getElementById('pageTitle').textContent=titles[id]?.[0]||'ملف العميل';document.getElementById('pageSub').textContent=titles[id]?.[1]||''}
 function renderDashboard(){let cs=data.flatMap(c=>c.cases);document.getElementById('sClients').textContent=data.length;document.getElementById('sCases').textContent=cs.length;document.getElementById('sOpen').textContent=cs.filter(x=>x.status!=='مغلقة').length;document.getElementById('sLast').textContent=logs[0]?.time?.split(',')[0]||'—';document.getElementById('recent').innerHTML=data.slice(-3).reverse().map(clientCard).join('')||'<div class="empty">لا يوجد عملاء</div>'}
@@ -122,8 +148,77 @@ function renderClients(q=''){let s=(q||'').trim().toLowerCase();let arr=data.fil
 function doSearch(){let q=document.getElementById('searchInput').value.trim().toLowerCase();let arr=data.filter(c=>c.name.toLowerCase().includes(q));document.getElementById('searchResults').innerHTML=arr.map(clientCard).join('')||'<div class="empty">لا توجد نتائج.</div>'}
 function openProfile(id){let c=data.find(x=>x.id===id);if(!c)return;showPage('profile');document.getElementById('profileContent').innerHTML=`<div class="card profileHero"><div class="avatar" style="width:74px;height:74px;font-size:28px">${initials(c.name)}</div><div><h2>${esc(c.name)}</h2><div class="muted">رقم الملف: ${esc(c.id)} — ${c.cases.length} قضية</div></div></div>${c.cases.map((x,i)=>`<div class="card case"><div class="caseTop"><h3>القضية رقم ${esc(x.no)}</h3><span class="tag">${esc(x.status)}</span></div><p><b>نوع القضية:</b> ${esc(x.type||'غير محدد')}<br><b>التاريخ:</b> ${esc(x.date||'غير محدد')}<br><b>التفاصيل:</b> ${esc(x.details||'لا توجد تفاصيل')}</p><div class="caseActions"><button class="btn" onclick="editCase('${c.id}',${i})">تعديل</button><button class="btn danger" onclick="deleteCase('${c.id}',${i})">حذف القضية</button></div></div>`).join('')}<div class="actions" style="margin-top:15px"><button class="btn" onclick="editClient('${c.id}')">تعديل بيانات العميل</button><button class="btn ghost" onclick="addCase('${c.id}')">＋ إضافة قضية</button><button class="btn danger" onclick="deleteClient('${c.id}')">حذف العميل</button></div>`}
 function resetForm(){document.getElementById('editId').value='';document.getElementById('clientName').value='';document.getElementById('caseNo').value='';document.getElementById('caseType').value='';document.getElementById('caseDate').value='';document.getElementById('caseStatus').value='مفتوحة';document.getElementById('details').value='';document.getElementById('formTitle').textContent='إضافة عميل جديد'}
-function saveClient(e){e.preventDefault();let id=document.getElementById('editId').value;let payload={no:document.getElementById('caseNo').value,type:document.getElementById('caseType').value,date:document.getElementById('caseDate').value,status:document.getElementById('caseStatus').value,details:document.getElementById('details').value};if(id){let c=data.find(x=>x.id===id);c.name=document.getElementById('clientName').value;c.cases[0]=payload;log('تعديل بيانات العميل',c.name);toast('تم تعديل البيانات');openProfile(id)}else{let c={id:'c_'+Date.now(),name:document.getElementById('clientName').value,cases:[payload]};data.push(c);log('إضافة عميل',c.name);toast('تمت إضافة العميل');openProfile(c.id)}persist();renderDashboard();renderClients();
-fetch('/api/clients',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({id:Date.now(),name:document.getElementById('clientName').value,case_no:document.getElementById('caseNo').value,case_type:document.getElementById('caseType').value,case_date:document.getElementById('caseDate').value,status:document.getElementById('caseStatus').value,details:document.getElementById('details').value})}).then(r=>r.json()).then(x=>console.log('تم الحفظ في قاعدة البيانات',x)).catch(err=>console.error(err));resetForm()}
+function saveClient(e){
+e.preventDefault();
+let id=document.getElementById('editId').value;
+let name=document.getElementById('clientName').value;
+let payload={
+no:document.getElementById('caseNo').value,
+type:document.getElementById('caseType').value,
+date:document.getElementById('caseDate').value,
+status:document.getElementById('caseStatus').value,
+details:document.getElementById('details').value
+};
+
+if(id){
+let c=data.find(x=>x.id===id);
+if(!c)return;
+c.name=name;
+c.cases[0]=payload;
+persist();
+renderDashboard();
+renderClients();
+
+let dbId=Number(id);
+if(!Number.isNaN(dbId)){
+fetch('/api/clients/'+dbId,{
+method:'PUT',
+headers:{'Content-Type':'application/json'},
+body:JSON.stringify({
+name:name,
+case_no:payload.no,
+case_type:payload.type,
+case_date:payload.date,
+status:payload.status,
+details:payload.details
+})
+}).then(r=>r.json())
+.then(x=>console.log('تم تعديل البيانات في قاعدة البيانات',x))
+.catch(err=>console.error('خطأ في تعديل قاعدة البيانات',err));
+}
+
+log('تعديل بيانات العميل',name);
+toast('تم تعديل البيانات');
+openProfile(id);
+}else{
+let c={id:'c_'+Date.now(),name:name,cases:[payload]};
+data.push(c);
+persist();
+renderDashboard();
+renderClients();
+
+fetch('/api/clients',{
+method:'POST',
+headers:{'Content-Type':'application/json'},
+body:JSON.stringify({
+id:Date.now(),
+name:name,
+case_no:payload.no,
+case_type:payload.type,
+case_date:payload.date,
+status:payload.status,
+details:payload.details
+})
+}).then(r=>r.json())
+.then(x=>console.log('تم الحفظ في قاعدة البيانات',x))
+.catch(err=>console.error('خطأ في حفظ قاعدة البيانات',err));
+
+log('إضافة عميل',name);
+toast('تمت إضافة العميل');
+openProfile(c.id);
+}
+resetForm();
+}
 function editClient(id){let c=data.find(x=>x.id===id);document.getElementById('editId').value=id;document.getElementById('clientName').value=c.name;let x=c.cases[0]||{};document.getElementById('caseNo').value=x.no||'';document.getElementById('caseType').value=x.type||'';document.getElementById('caseDate').value=x.date||'';document.getElementById('caseStatus').value=x.status||'مفتوحة';document.getElementById('details').value=x.details||'';document.getElementById('formTitle').textContent='تعديل بيانات العميل';showPage('add')}
 function editCase(id,i){let c=data.find(x=>x.id===id),x=c.cases[i];document.getElementById('editId').value=id;document.getElementById('clientName').value=c.name;document.getElementById('caseNo').value=x.no;document.getElementById('caseType').value=x.type;document.getElementById('caseDate').value=x.date;document.getElementById('caseStatus').value=x.status;document.getElementById('details').value=x.details;document.getElementById('formTitle').textContent='تعديل القضية';showPage('add')}
 function addCase(id){let c=data.find(x=>x.id===id);document.getElementById('editId').value='';document.getElementById('clientName').value=c.name;document.getElementById('caseNo').value='';document.getElementById('caseType').value='';document.getElementById('caseDate').value='';document.getElementById('caseStatus').value='مفتوحة';document.getElementById('details').value='';document.getElementById('formTitle').textContent='إضافة قضية للعميل';let f=document.querySelector('#add form');f.onsubmit=(e)=>{e.preventDefault();let p={no:caseNo.value,type:caseType.value,date:caseDate.value,status:caseStatus.value,details:details.value};c.cases.push(p);log('إضافة قضية',c.name);persist();toast('تمت إضافة القضية');f.onsubmit=saveClient;openProfile(id);renderDashboard()};showPage('add')}
