@@ -17,7 +17,7 @@ app.use(express.static(__dirname));
 
 app.get("/", (req, res) => {
   res.sendFile(
-    path.join(__dirname, "مكتب_هبه_ابو_كيله_للمحاماة.html")
+    path.join(__dirname, "index.html")
   );
 });
 
