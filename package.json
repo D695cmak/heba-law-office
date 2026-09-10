@@ -1,4 +1,7 @@
 {
+  "scripts": {
+    "start": "node server.js"
+  },
   "devDependencies": {
     "supabase": "^2.117.0"
   },
