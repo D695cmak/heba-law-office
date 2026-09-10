@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>مكتب الأستاذة هبه أبو كيله للمحاماة</title>
+<style>
+:root{--gold:#d6b36a;--gold2:#f4d994;--bg:#070a0f;--panel:#0d131c;--panel2:#111a25;--text:#f6f2e9;--muted:#9ba5b4;--line:#263242;--danger:#e56b6b}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 50% 0,#14202d 0,#070a0f 42%,#040507 100%);color:var(--text);font-family:Tahoma,Arial,sans-serif;min-height:100vh}
+body:before{content:"⚖";position:fixed;inset:0;display:grid;place-items:center;font-size:46vw;color:rgba(214,179,106,.035);pointer-events:none;z-index:0}
+#light{position:fixed;inset:8px;border:1px solid rgba(214,179,106,.15);box-shadow:0 0 28px rgba(214,179,106,.08);pointer-events:none;z-index:20;border-radius:18px}
+#light:after{content:"";position:absolute;inset:-2px;border-radius:19px;border:2px solid transparent;border-top-color:var(--gold);filter:drop-shadow(0 0 7px var(--gold));animation:orbit 5s linear infinite}
+@keyframes orbit{0%{clip-path:inset(0 75% 92% 0)}25%{clip-path:inset(0 0 75% 92%)}50%{clip-path:inset(92% 0 0 75%)}75%{clip-path:inset(75% 92% 0 0)}100%{clip-path:inset(0 75% 92% 0)}}
+.app{position:relative;z-index:1;display:flex;min-height:100vh}.side{width:260px;background:rgba(7,10,15,.94);border-left:1px solid var(--line);padding:24px 16px;position:fixed;right:0;top:0;bottom:0}
+.brand{display:flex;gap:12px;align-items:center;padding:8px 10px 22px;border-bottom:1px solid var(--line);margin-bottom:18px}.scale{width:48px;height:48px;border:1px solid var(--gold);border-radius:14px;display:grid;place-items:center;font-size:27px;box-shadow:0 0 18px rgba(214,179,106,.12)}.brand b{display:block;font-size:15px}.brand small{color:var(--gold2);display:block;margin-top:5px}
+.nav button{width:100%;border:0;background:transparent;color:#c8d0db;text-align:right;padding:13px 14px;border-radius:12px;margin:3px 0;cursor:pointer;font-size:14px}.nav button:hover,.nav button.active{background:linear-gradient(90deg,rgba(214,179,106,.13),rgba(214,179,106,.04));color:var(--gold2)}
+.main{margin-right:260px;width:calc(100% - 260px);padding:28px;max-width:1500px}.top{display:flex;justify-content:space-between;align-items:center;gap:15px;margin-bottom:24px}.title h1{margin:0;font-size:28px}.title p{margin:7px 0 0;color:var(--muted)}
+.actions{display:flex;gap:10px;flex-wrap:wrap}.btn{border:1px solid var(--gold);background:linear-gradient(135deg,#b9944b,#e0c277);color:#14110a;padding:11px 16px;border-radius:11px;font-weight:700;cursor:pointer}.btn.ghost{background:transparent;color:var(--gold2)}.btn.danger{border-color:var(--danger);color:#ffd6d6;background:transparent}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}.card{background:linear-gradient(145deg,rgba(17,26,37,.94),rgba(9,13,19,.94));border:1px solid var(--line);border-radius:18px;padding:18px;box-shadow:0 10px 30px rgba(0,0,0,.18)}.stat strong{font-size:30px;display:block;margin:7px 0}.muted{color:var(--muted);font-size:13px}
+.section{margin-top:18px}.search{display:flex;gap:10px;margin-bottom:15px}.search input,.form input,.form textarea,.form select{width:100%;background:#080c12;border:1px solid #293546;color:var(--text);border-radius:11px;padding:13px;outline:none}.search input:focus,.form input:focus,.form textarea:focus,.form select:focus{border-color:var(--gold)}.search input{font-size:15px}
+.clients{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.client{cursor:pointer;transition:.2s}.client:hover{transform:translateY(-3px);border-color:rgba(214,179,106,.6)}.avatar{width:50px;height:50px;border-radius:50%;border:1px solid var(--gold);display:grid;place-items:center;color:var(--gold2);font-weight:bold;font-size:20px}.clienthead{display:flex;align-items:center;gap:12px}.tag{display:inline-block;border:1px solid #334256;border-radius:20px;padding:4px 9px;font-size:11px;color:#c8d0db;margin:4px 3px 0 0}
+.page{display:none}.page.show{display:block}.profile{max-width:1050px;margin:auto}.profileHero{display:flex;align-items:center;gap:18px;border-color:rgba(214,179,106,.45);position:relative;overflow:hidden}.profileHero:after{content:"⚖";position:absolute;left:25px;top:-25px;font-size:120px;color:rgba(214,179,106,.05)}.profileHero h2{margin:0 0 8px;font-size:26px}.case{margin-top:14px}.caseTop{display:flex;justify-content:space-between;gap:10px;align-items:center}.case h3{margin:0}.case p{line-height:1.8;color:#c2cad5}.caseActions{display:flex;gap:8px;flex-wrap:wrap}
+.form{display:grid;grid-template-columns:1fr 1fr;gap:14px}.form .full{grid-column:1/-1}.form label{display:block;color:#cbd3de;font-size:13px;margin-bottom:7px}.form textarea{min-height:130px;resize:vertical}.empty{text-align:center;padding:35px;color:var(--muted)}
+.login{min-height:100vh;display:grid;place-items:center;padding:20px}.loginbox{width:min(430px,100%);text-align:center}.loginbox .scale{margin:0 auto 18px;width:80px;height:80px;font-size:45px}.loginbox h1{font-size:24px}.loginbox p{color:var(--muted);line-height:1.8}.loginbox .form{display:block;text-align:right}.loginbox .form>div{margin:12px 0}.note{font-size:11px;color:#8993a1;margin-top:14px}
+.toast{position:fixed;left:24px;bottom:24px;background:#121a24;border:1px solid var(--gold);color:var(--text);padding:12px 16px;border-radius:12px;opacity:0;transform:translateY(12px);transition:.25s;z-index:50}.toast.on{opacity:1;transform:none}
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.7);display:none;place-items:center;z-index:40;padding:20px}.modal.show{display:grid}.modalbox{width:min(600px,100%);max-height:90vh;overflow:auto}
+@media(max-width:1000px){.grid{grid-template-columns:repeat(2,1fr)}.clients{grid-template-columns:repeat(2,1fr)}}@media(max-width:720px){.side{position:static;width:100%;height:auto;border-left:0;border-bottom:1px solid var(--line)}.app{display:block}.main{margin-right:0;width:100%;padding:16px}.nav{display:grid;grid-template-columns:repeat(2,1fr)}.grid,.clients,.form{grid-template-columns:1fr}.form .full{grid-column:auto}.top{align-items:flex-start;flex-direction:column}}
+</style>
+</head>
+<body>
+<div id="light"></div>
+<div id="login" class="login">
+  <div class="loginbox">
+    <div class="scale">⚖</div>
+    <h1>مكتب الأستاذة هبه أبو كيله للمحاماة</h1>
+    <p>نظام إدارة العملاء والقضايا — نسخة تشغيل محلية</p>
+    <div class="card form">
+      <div><label>اسم المستخدم</label><input id="user" value="admin"></div>
+      <div><label>كلمة المرور</label><input id="pass" type="password" value="admin123"></div>
+      <button class="btn" onclick="login()">تسجيل الدخول</button>
+    </div>
+    <div class="note">هذه النسخة تعمل محليًا داخل المتصفح. لا تضع بيانات عملاء حقيقية فيها قبل نشر نسخة Backend مؤمنة.</div>
+  </div>
+</div>
+
+<div id="app" class="app" style="display:none">
+<aside class="side">
+  <div class="brand"><div class="scale">⚖</div><div><b id="brandName">مكتب الأستاذة هبه أبو كيله</b><small>للمحاماة</small></div></div>
+  <div class="nav">
+    <button class="active" onclick="showPage('dashboard',this)">⌂ الرئيسية</button>
+    <button onclick="showPage('clients',this)">👥 العملاء</button>
+    <button onclick="showPage('add',this)">＋ إضافة عميل</button>
+    <button onclick="showPage('search',this)">⌕ البحث عن عميل</button>
+    <button onclick="showPage('logs',this)">◷ سجل العمليات</button>
+    <button onclick="showPage('settings',this)">⚙ الإعدادات</button>
+    <button onclick="logout()">↪ تسجيل الخروج</button>
+  </div>
+</aside>
+<main class="main">
+  <div class="top"><div class="title"><h1 id="pageTitle">لوحة التحكم</h1><p id="pageSub">إدارة العملاء والقضايا بطريقة منظمة</p></div><div class="actions"><button class="btn" onclick="showPage('add')">＋ عميل جديد</button><button class="btn ghost" onclick="showPage('search')">⌕ بحث سريع</button></div></div>
+
+  <section id="dashboard" class="page show">
+    <div class="grid">
+      <div class="card stat"><span class="muted">إجمالي العملاء</span><strong id="sClients">0</strong><span class="muted">ملفات العملاء</span></div>
+      <div class="card stat"><span class="muted">إجمالي القضايا</span><strong id="sCases">0</strong><span class="muted">قضايا مسجلة</span></div>
+      <div class="card stat"><span class="muted">القضايا المفتوحة</span><strong id="sOpen">0</strong><span class="muted">تحتاج متابعة</span></div>
+      <div class="card stat"><span class="muted">آخر تحديث</span><strong id="sLast">—</strong><span class="muted">حسب سجل النظام</span></div>
+    </div>
+    <div class="section card"><h2>آخر العملاء</h2><div id="recent" class="clients"></div></div>
+  </section>
+
+  <section id="clients" class="page"><div class="search"><input placeholder="ابحث باسم العميل..." oninput="renderClients(this.value)"><button class="btn" onclick="showPage('add')">＋ إضافة</button></div><div id="clientsList" class="clients"></div></section>
+
+  <section id="search" class="page"><div class="card"><h2>البحث عن عميل</h2><div class="search"><input id="searchInput" placeholder="اكتب اسم العميل..." oninput="doSearch()"><button class="btn" onclick="doSearch()">بحث</button></div><div id="searchResults"></div></div></section>
+
+  <section id="add" class="page"><div class="card"><h2 id="formTitle">إضافة عميل جديد</h2><form class="form" onsubmit="saveClient(event)">
+    <input type="hidden" id="editId">
+    <div><label>اسم العميل *</label><input id="clientName" required></div>
+    <div><label>رقم القضية *</label><input id="caseNo" required></div>
+    <div><label>نوع القضية</label><input id="caseType"></div>
+    <div><label>التاريخ</label><input id="caseDate" type="date"></div>
+    <div><label>حالة القضية</label><select id="caseStatus"><option>مفتوحة</option><option>قيد المتابعة</option><option>مغلقة</option></select></div>
+    <div class="full"><label>التفاصيل</label><textarea id="details"></textarea></div>
+    <div class="full actions"><button class="btn" id="saveBtn">حفظ البيانات</button><button type="button" class="btn ghost" onclick="resetForm()">إلغاء</button></div>
+  </form></div></section>
+
+  <section id="profile" class="page"><div id="profileContent" class="profile"></div></section>
+
+  <section id="logs" class="page"><div class="card"><h2>سجل العمليات</h2><div id="logsList"></div></div></section>
+
+  <section id="settings" class="page"><div class="card"><h2>إعدادات المظهر</h2><p class="muted">يمكنك تغيير الهوية البصرية بدون تعديل الكود.</p><form class="form" onsubmit="saveSettings(event)">
+    <div><label>اسم المكتب</label><input id="setName"></div>
+    <div><label>اللون الذهبي</label><input id="setGold" value="#d6b36a"></div>
+    <div><label>لون الخلفية</label><input id="setBg" value="#070a0f"></div>
+    <div><label>الخط</label><select id="setFont"><option value="Tahoma,Arial,sans-serif">Tahoma</option><option value="Arial,sans-serif">Arial</option></select></div>
+    <div class="full"><label><input type="checkbox" id="setAnim" checked> تفعيل الإضاءة المتحركة</label></div>
+    <div class="full"><button class="btn">حفظ إعدادات المظهر</button></div>
+  </form></div>
+  <div class="card section"><h3>البيانات</h3><p class="muted">يمكنك تصدير نسخة JSON احتياطية أو استيرادها على نفس الجهاز.</p><div class="actions"><button class="btn" onclick="exportData()">تصدير نسخة احتياطية</button><label class="btn ghost" style="display:inline-block;cursor:pointer">استيراد نسخة <input type="file" accept=".json" hidden onchange="importData(event)"></label></div></div></section>
+</main></div>
+<div id="toast" class="toast"></div>
+<script>
+const KEY='heba_law_app_v1', LOG='heba_law_logs_v1', SET='heba_law_settings_v1';
+let data=JSON.parse(localStorage.getItem(KEY)||'null')||[
+{id:'c1',name:'أحمد محمد علي',cases:[{no:'1254',type:'مدني',date:'2026-09-02',status:'مفتوحة',details:'بيانات تجريبية — استبدلها ببياناتك.'}]},
+{id:'c2',name:'محمد خالد حسن',cases:[{no:'873',type:'أسرة',date:'2026-08-21',status:'قيد المتابعة',details:'بيانات تجريبية.'}]}
+];
+let logs=JSON.parse(localStorage.getItem(LOG)||'[]');
+let settings=JSON.parse(localStorage.getItem(SET)||'null')||{name:'مكتب الأستاذة هبه أبو كيله',gold:'#d6b36a',bg:'#070a0f',font:'Tahoma,Arial,sans-serif',anim:true};
+function persist(){localStorage.setItem(KEY,JSON.stringify(data));localStorage.setItem(LOG,JSON.stringify(logs))}
+function log(action,name){logs.unshift({time:new Date().toLocaleString('ar-EG'),action,name});logs=logs.slice(0,100);persist()}
+function toast(t){let e=document.getElementById('toast');e.textContent=t;e.classList.add('on');setTimeout(()=>e.classList.remove('on'),2200)}
+function login(){if(document.getElementById('user').value==='admin'&&document.getElementById('pass').value==='admin123'){sessionStorage.ok='1';document.getElementById('login').style.display='none';document.getElementById('app').style.display='flex';init()}else toast('بيانات الدخول غير صحيحة')}
+function logout(){sessionStorage.removeItem('ok');location.reload()}
+function init(){applySettings();renderDashboard();renderClients();renderLogs();document.getElementById('setName').value=settings.name;document.getElementById('setGold').value=settings.gold;document.getElementById('setBg').value=settings.bg;document.getElementById('setFont').value=settings.font;document.getElementById('setAnim').checked=settings.anim}
+function applySettings(){document.documentElement.style.setProperty('--gold',settings.gold);document.documentElement.style.setProperty('--gold2',settings.gold);document.documentElement.style.setProperty('--bg',settings.bg);document.body.style.fontFamily=settings.font;document.getElementById('brandName').textContent=settings.name;document.getElementById('light').style.display=settings.anim?'block':'none'}
+function showPage(id,btn){document.querySelectorAll('.page').forEach(x=>x.classList.remove('show'));document.getElementById(id).classList.add('show');document.querySelectorAll('.nav button').forEach(x=>x.classList.remove('active'));if(btn)btn.classList.add('active');let titles={dashboard:['لوحة التحكم','إدارة العملاء والقضايا بطريقة منظمة'],clients:['العملاء','ملفات العملاء والقضايا المرتبطة بهم'],search:['البحث عن عميل','ابحث بالاسم للوصول إلى الملف'],add:['إضافة عميل','إنشاء ملف عميل وقضية'],logs:['سجل العمليات','آخر العمليات المسجلة على النظام'],settings:['الإعدادات','تخصيص الهوية البصرية والنسخ الاحتياطي'],profile:['ملف العميل','بيانات العميل والقضايا الخاصة به']};document.getElementById('pageTitle').textContent=titles[id]?.[0]||'ملف العميل';document.getElementById('pageSub').textContent=titles[id]?.[1]||''}
+function renderDashboard(){let cs=data.flatMap(c=>c.cases);document.getElementById('sClients').textContent=data.length;document.getElementById('sCases').textContent=cs.length;document.getElementById('sOpen').textContent=cs.filter(x=>x.status!=='مغلقة').length;document.getElementById('sLast').textContent=logs[0]?.time?.split(',')[0]||'—';document.getElementById('recent').innerHTML=data.slice(-3).reverse().map(clientCard).join('')||'<div class="empty">لا يوجد عملاء</div>'}
+function initials(n){return n.trim().split(/\s+/).slice(0,2).map(x=>x[0]).join('')}
+function clientCard(c){return `<div class="card client" onclick="openProfile('${c.id}')"><div class="clienthead"><div class="avatar">${initials(c.name)}</div><div><b>${esc(c.name)}</b><div class="muted">${c.cases.length} قضية</div></div></div><div style="margin-top:12px">${c.cases.slice(0,3).map(x=>`<span class="tag">#${esc(x.no)} — ${esc(x.type||'غير محدد')}</span>`).join('')}</div></div>`}
+function renderClients(q=''){let s=(q||'').trim().toLowerCase();let arr=data.filter(c=>c.name.toLowerCase().includes(s));document.getElementById('clientsList').innerHTML=arr.map(clientCard).join('')||'<div class="empty">لم يتم العثور على عميل بهذا الاسم.</div>'}
+function doSearch(){let q=document.getElementById('searchInput').value.trim().toLowerCase();let arr=data.filter(c=>c.name.toLowerCase().includes(q));document.getElementById('searchResults').innerHTML=arr.map(clientCard).join('')||'<div class="empty">لا توجد نتائج.</div>'}
+function openProfile(id){let c=data.find(x=>x.id===id);if(!c)return;showPage('profile');document.getElementById('profileContent').innerHTML=`<div class="card profileHero"><div class="avatar" style="width:74px;height:74px;font-size:28px">${initials(c.name)}</div><div><h2>${esc(c.name)}</h2><div class="muted">رقم الملف: ${esc(c.id)} — ${c.cases.length} قضية</div></div></div>${c.cases.map((x,i)=>`<div class="card case"><div class="caseTop"><h3>القضية رقم ${esc(x.no)}</h3><span class="tag">${esc(x.status)}</span></div><p><b>نوع القضية:</b> ${esc(x.type||'غير محدد')}<br><b>التاريخ:</b> ${esc(x.date||'غير محدد')}<br><b>التفاصيل:</b> ${esc(x.details||'لا توجد تفاصيل')}</p><div class="caseActions"><button class="btn" onclick="editCase('${c.id}',${i})">تعديل</button><button class="btn danger" onclick="deleteCase('${c.id}',${i})">حذف القضية</button></div></div>`).join('')}<div class="actions" style="margin-top:15px"><button class="btn" onclick="editClient('${c.id}')">تعديل بيانات العميل</button><button class="btn ghost" onclick="addCase('${c.id}')">＋ إضافة قضية</button><button class="btn danger" onclick="deleteClient('${c.id}')">حذف العميل</button></div>`}
+function resetForm(){document.getElementById('editId').value='';document.getElementById('clientName').value='';document.getElementById('caseNo').value='';document.getElementById('caseType').value='';document.getElementById('caseDate').value='';document.getElementById('caseStatus').value='مفتوحة';document.getElementById('details').value='';document.getElementById('formTitle').textContent='إضافة عميل جديد'}
+function saveClient(e){e.preventDefault();let id=document.getElementById('editId').value;let payload={no:document.getElementById('caseNo').value,type:document.getElementById('caseType').value,date:document.getElementById('caseDate').value,status:document.getElementById('caseStatus').value,details:document.getElementById('details').value};if(id){let c=data.find(x=>x.id===id);c.name=document.getElementById('clientName').value;c.cases[0]=payload;log('تعديل بيانات العميل',c.name);toast('تم تعديل البيانات');openProfile(id)}else{let c={id:'c_'+Date.now(),name:document.getElementById('clientName').value,cases:[payload]};data.push(c);log('إضافة عميل',c.name);toast('تمت إضافة العميل');openProfile(c.id)}persist();renderDashboard();renderClients();resetForm()}
+function editClient(id){let c=data.find(x=>x.id===id);document.getElementById('editId').value=id;document.getElementById('clientName').value=c.name;let x=c.cases[0]||{};document.getElementById('caseNo').value=x.no||'';document.getElementById('caseType').value=x.type||'';document.getElementById('caseDate').value=x.date||'';document.getElementById('caseStatus').value=x.status||'مفتوحة';document.getElementById('details').value=x.details||'';document.getElementById('formTitle').textContent='تعديل بيانات العميل';showPage('add')}
+function editCase(id,i){let c=data.find(x=>x.id===id),x=c.cases[i];document.getElementById('editId').value=id;document.getElementById('clientName').value=c.name;document.getElementById('caseNo').value=x.no;document.getElementById('caseType').value=x.type;document.getElementById('caseDate').value=x.date;document.getElementById('caseStatus').value=x.status;document.getElementById('details').value=x.details;document.getElementById('formTitle').textContent='تعديل القضية';showPage('add')}
+function addCase(id){let c=data.find(x=>x.id===id);document.getElementById('editId').value='';document.getElementById('clientName').value=c.name;document.getElementById('caseNo').value='';document.getElementById('caseType').value='';document.getElementById('caseDate').value='';document.getElementById('caseStatus').value='مفتوحة';document.getElementById('details').value='';document.getElementById('formTitle').textContent='إضافة قضية للعميل';let f=document.querySelector('#add form');f.onsubmit=(e)=>{e.preventDefault();let p={no:caseNo.value,type:caseType.value,date:caseDate.value,status:caseStatus.value,details:details.value};c.cases.push(p);log('إضافة قضية',c.name);persist();toast('تمت إضافة القضية');f.onsubmit=saveClient;openProfile(id);renderDashboard()};showPage('add')}
+function deleteCase(id,i){if(!confirm('هل تريد حذف هذه القضية؟'))return;let c=data.find(x=>x.id===id);c.cases.splice(i,1);log('حذف قضية',c.name);persist();openProfile(id);renderDashboard();toast('تم حذف القضية')}
+function deleteClient(id){let c=data.find(x=>x.id===id);if(!confirm('سيتم حذف ملف العميل وجميع قضاياه. هل أنت متأكد؟'))return;data=data.filter(x=>x.id!==id);log('حذف عميل',c.name);persist();renderDashboard();renderClients();showPage('clients');toast('تم حذف العميل')}
+function renderLogs(){document.getElementById('logsList').innerHTML=logs.map(l=>`<div style="padding:12px 0;border-bottom:1px solid var(--line)"><b>${esc(l.action)}</b> — ${esc(l.name)}<div class="muted">${esc(l.time)}</div></div>`).join('')||'<div class="empty">لا توجد عمليات بعد.</div>'}
+function saveSettings(e){e.preventDefault();settings={name:setName.value||settings.name,gold:setGold.value||settings.gold,bg:setBg.value||settings.bg,font:setFont.value,anim:setAnim.checked};localStorage.setItem(SET,JSON.stringify(settings));applySettings();toast('تم حفظ إعدادات المظهر')}
+function exportData(){let blob=new Blob([JSON.stringify({data,logs,settings},null,2)],{type:'application/json'}),a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='heba-law-backup.json';a.click();URL.revokeObjectURL(a.href)}
+function importData(e){let f=e.target.files[0];if(!f)return;let r=new FileReader();r.onload=()=>{try{let x=JSON.parse(r.result);if(x.data){data=x.data;logs=x.logs||[];settings=x.settings||settings;persist();applySettings();renderDashboard();renderClients();renderLogs();toast('تم استيراد النسخة')}else throw 0}catch(_){toast('ملف النسخة غير صالح')}};r.readAsText(f)}
+function esc(s){return String(s??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]))}
+if(sessionStorage.ok==='1'){document.getElementById('login').style.display='none';document.getElementById('app').style.display='flex';init()}
+</script>
+</body></html>
+</head>
+<style>
+body {
+    margin: 0;
+    background-image: url("background.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
